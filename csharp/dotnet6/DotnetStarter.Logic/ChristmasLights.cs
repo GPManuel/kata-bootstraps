@@ -6,6 +6,11 @@ namespace DotnetStarter.Logic
     {
         private bool[,] _lights = new bool[1000, 1000];
 
+        public int CountLitLights()
+        {
+            return _lights.Cast<bool>().Count(light => light);
+        }
+
         public void TurnOn(Coordinates startCoordinates, Coordinates endCoordinates)
         {
             for (var initialPostionX = startCoordinates.X; initialPostionX <= endCoordinates.X; initialPostionX++)
@@ -28,9 +33,15 @@ namespace DotnetStarter.Logic
             }
         }
 
-        public int CountLitLights()
+        public void Toggle(Coordinates startCoordinates, Coordinates endCoordinates)
         {
-            return _lights.Cast<bool>().Count(light => light);
+            for (var initialPostionX = startCoordinates.X; initialPostionX <= endCoordinates.X; initialPostionX++)
+            {
+                for (var initialPositionY = startCoordinates.Y; initialPositionY <= endCoordinates.Y; initialPositionY++)
+                {
+                    _lights[initialPostionX, initialPositionY] = !_lights[initialPostionX, initialPositionY];
+                }
+            }
         }
     }
 }
