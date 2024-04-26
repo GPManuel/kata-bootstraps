@@ -6,13 +6,24 @@ namespace DotnetStarter.Logic
     {
         private bool[,] _lights = new bool[1000, 1000];
 
-        public void TurnOn(int coordinateX1, int coordinateY1, int coordinateX2, int coordinateY2)
+        public void TurnOn(Coordinates startCoordinates, Coordinates endCoordinates)
         {
-            for (var initialPostionX = coordinateX1; initialPostionX <= coordinateX2; initialPostionX++)
+            for (var initialPostionX = startCoordinates.X; initialPostionX <= endCoordinates.X; initialPostionX++)
             {
-                for (var initialPositionY = coordinateY1; initialPositionY <= coordinateY2; initialPositionY++)
+                for (var initialPositionY = startCoordinates.Y; initialPositionY <= endCoordinates.Y; initialPositionY++)
                 {
                     _lights[initialPostionX, initialPositionY] = true;
+                }
+            }
+        }
+
+        public void TurnOff(Coordinates startCoordinates, Coordinates endCoordinates)
+        {
+            for (var initialPostionX = startCoordinates.X; initialPostionX <= endCoordinates.X; initialPostionX++)
+            {
+                for (var initialPositionY = startCoordinates.Y; initialPositionY <= endCoordinates.Y; initialPositionY++)
+                {
+                    _lights[initialPostionX, initialPositionY] = false;
                 }
             }
         }
@@ -20,17 +31,6 @@ namespace DotnetStarter.Logic
         public int CountLitLights()
         {
             return _lights.Cast<bool>().Count(light => light);
-        }
-
-        public void TurnOff(int coordinateX1, int coordinateY1, int coordinateX2, int coordinateY2)
-        {
-            for (var initialPostionX = coordinateX1; initialPostionX <= coordinateX2; initialPostionX++)
-            {
-                for (var initialPositionY = coordinateY1; initialPositionY <= coordinateY2; initialPositionY++)
-                {
-                    _lights[initialPostionX, initialPositionY] = false;
-                }
-            }
         }
     }
 }

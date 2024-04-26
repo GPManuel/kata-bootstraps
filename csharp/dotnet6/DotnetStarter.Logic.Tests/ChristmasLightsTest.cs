@@ -17,12 +17,10 @@ namespace DotnetStarter.Logic.Tests
         [Test]
         public void turn_on_1_light()
         {
-            var coordinateX1 = 5;
-            var coordinateY1 = 5;
-            var coordinateX2 = 5;
-            var coordinateY2 = 5;
+            var startCoordinate = new Coordinates(5, 5);
+            var endCoordinate = new Coordinates(5, 5);
 
-            _christmasLights.TurnOn(coordinateX1, coordinateY1, coordinateX2, coordinateY2);
+            _christmasLights.TurnOn(startCoordinate, endCoordinate);
 
             Assert.That(_christmasLights.CountLitLights(), Is.EqualTo(1));
         }
@@ -31,12 +29,10 @@ namespace DotnetStarter.Logic.Tests
         [Test]
         public void turn_on_a_range()
         {
-            var coordinateX1 = 0;
-            var coordinateY1 = 0;
-            var coordinateX2 = 999;
-            var coordinateY2 = 999;
+            var startCoordinate = new Coordinates(0,0);
+            var endCoordinate = new Coordinates(999,999);
 
-            _christmasLights.TurnOn(coordinateX1, coordinateY1, coordinateX2, coordinateY2);
+            _christmasLights.TurnOn(startCoordinate, endCoordinate);
 
             Assert.That(_christmasLights.CountLitLights(), Is.EqualTo(1000000));
         }
@@ -44,13 +40,13 @@ namespace DotnetStarter.Logic.Tests
         [Test]
         public void turn_off_a_range()
         {
-            var coordinateX1 = 0;
-            var coordinateY1 = 0;
-            var coordinateX2 = 999;
-            var coordinateY2 = 999;
+            var turnOnStartCoordinate = new Coordinates(0, 0);
+            var turnOnEndCoordinate = new Coordinates(999, 999);
+            var turnOffStartCoordinate = new Coordinates(499,499);
+            var turnOffEndCoordinate = new Coordinates(500, 500);
 
-            _christmasLights.TurnOn(coordinateX1, coordinateY1, coordinateX2, coordinateY2);
-            _christmasLights.TurnOff(499, 499, 500, 500);
+            _christmasLights.TurnOn(turnOnStartCoordinate, turnOnEndCoordinate);
+            _christmasLights.TurnOff(turnOffStartCoordinate, turnOffEndCoordinate);
 
             Assert.That(_christmasLights.CountLitLights(), Is.EqualTo(999996));
         }
