@@ -40,5 +40,19 @@ namespace DotnetStarter.Logic.Tests
 
             Assert.That(_christmasLights.CountLitLights(), Is.EqualTo(1000000));
         }
+
+        [Test]
+        public void turn_off_a_range()
+        {
+            var coordinateX1 = 0;
+            var coordinateY1 = 0;
+            var coordinateX2 = 999;
+            var coordinateY2 = 999;
+
+            _christmasLights.TurnOn(coordinateX1, coordinateY1, coordinateX2, coordinateY2);
+            _christmasLights.TurnOff(499, 499, 500, 500);
+
+            Assert.That(_christmasLights.CountLitLights(), Is.EqualTo(999996));
+        }
     }
 }

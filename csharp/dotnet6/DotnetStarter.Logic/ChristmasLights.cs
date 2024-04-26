@@ -8,7 +8,6 @@ namespace DotnetStarter.Logic
 
         public void TurnOn(int coordinateX1, int coordinateY1, int coordinateX2, int coordinateY2)
         {
-            //var initialPostionX = coordinateX1
             for (var initialPostionX = coordinateX1; initialPostionX <= coordinateX2; initialPostionX++)
             {
                 for (var initialPositionY = coordinateY1; initialPositionY <= coordinateY2; initialPositionY++)
@@ -21,6 +20,17 @@ namespace DotnetStarter.Logic
         public int CountLitLights()
         {
             return _lights.Cast<bool>().Count(light => light);
+        }
+
+        public void TurnOff(int coordinateX1, int coordinateY1, int coordinateX2, int coordinateY2)
+        {
+            for (var initialPostionX = coordinateX1; initialPostionX <= coordinateX2; initialPostionX++)
+            {
+                for (var initialPositionY = coordinateY1; initialPositionY <= coordinateY2; initialPositionY++)
+                {
+                    _lights[initialPostionX, initialPositionY] = false;
+                }
+            }
         }
     }
 }
