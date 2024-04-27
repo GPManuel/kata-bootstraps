@@ -51,20 +51,6 @@ namespace DotnetStarter.Logic.Tests
             Assert.That(_christmasLights.MeasureTotalBrightness(), Is.EqualTo(999996));
         }
 
-        //[Test]
-        //public void toogle_a_range()
-        //{
-        //    var turnOnStartCoordinate = new Coordinates(0, 0);
-        //    var turnOnEndCoordinate = new Coordinates(50, 0);
-        //    var toogleStartCoordinate = new Coordinates(0, 0);
-        //    var toogleEndCoordinate = new Coordinates(51, 0);
-
-        //    _christmasLights.TurnOn(turnOnStartCoordinate, turnOnEndCoordinate);
-        //    _christmasLights.Toggle(toogleStartCoordinate, toogleEndCoordinate);
-
-        //    Assert.That(_christmasLights.MeasureTotalBrightness(), Is.EqualTo(1));
-        //}
-
         [Test]
         public void increase_the_brightness_of_a_range()
         {
@@ -91,7 +77,6 @@ namespace DotnetStarter.Logic.Tests
 
             Assert.That(_christmasLights.MeasureTotalBrightness(), Is.EqualTo(25));
         }
-
 
 
         [Test]
