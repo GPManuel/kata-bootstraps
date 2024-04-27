@@ -2,10 +2,10 @@ namespace DotnetStarter.Logic;
 
 internal record Light
 {
-    public bool State;
+    public int Brightness;
 
-    public void ChangeBrightness(bool state)
+    public void ChangeBrightness(int increasedBrightness)
     {
-        State = state;
+        Brightness += increasedBrightness;
     }
 }

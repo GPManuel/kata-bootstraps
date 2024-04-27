@@ -4,9 +4,9 @@ namespace DotnetStarter.Logic
 {
     public class ChristmasLights
     {
-        private const int COORDINATEX_MAX_VALUE = 1000;
-        private const int COORFINATEY_MAX_VALUE = 1000;
-        private Light[,] _lightsWithBrightness = new Light[COORDINATEX_MAX_VALUE, COORFINATEY_MAX_VALUE];
+        private const int CoordinateXMaxValue = 1000;
+        private const int CoordinateYMaxValue = 1000;
+        private readonly Light[,] _lightsWithBrightness = new Light[CoordinateXMaxValue, CoordinateYMaxValue];
 
         public ChristmasLights()
         {
@@ -15,7 +15,7 @@ namespace DotnetStarter.Logic
 
         public int MeasureTotalBrightness()
         {
-            return _lightsWithBrightness.Cast<Light>().Count(light => light.State);
+            return _lightsWithBrightness.Cast<Light>().Sum(light => light.Brightness);
         }
 
         public void TurnOn(Coordinates startCoordinates, Coordinates endCoordinates)
@@ -24,7 +24,7 @@ namespace DotnetStarter.Logic
             {
                 for (var initialPositionY = startCoordinates.Y; initialPositionY <= endCoordinates.Y; initialPositionY++)
                 {
-                    ChangeLightBrightness(initialPostionX, initialPositionY, true);
+                    ChangeLightBrightness(initialPostionX, initialPositionY, 1);
                 }
             }
         }
@@ -35,7 +35,7 @@ namespace DotnetStarter.Logic
             {
                 for (var initialPositionY = startCoordinates.Y; initialPositionY <= endCoordinates.Y; initialPositionY++)
                 {
-                    ChangeLightBrightness(initialPostionX, initialPositionY, false);
+                    ChangeLightBrightness(initialPostionX, initialPositionY, -1);
                 }
             }
         }
@@ -46,21 +46,21 @@ namespace DotnetStarter.Logic
             {
                 for (var initialPositionY = startCoordinates.Y; initialPositionY <= endCoordinates.Y; initialPositionY++)
                 {
-                    ChangeLightBrightness(initialPostionX, initialPositionY, !_lightsWithBrightness[initialPostionX, initialPositionY].State);
+                    ChangeLightBrightness(initialPostionX, initialPositionY, 2);
                 }
             }
         }
 
-        private void ChangeLightBrightness(int initialPostionX, int initialPositionY, bool state)
+        private void ChangeLightBrightness(int initialPostionX, int initialPositionY, int increasedBrightness)
         {
-            _lightsWithBrightness[initialPostionX, initialPositionY].ChangeBrightness(state);
+            _lightsWithBrightness[initialPostionX, initialPositionY].ChangeBrightness(increasedBrightness);
         }
 
         private void InitializeChristmasLights()
         {
-            for (var initialPostionX = 0; initialPostionX < COORDINATEX_MAX_VALUE; initialPostionX++)
+            for (var initialPostionX = 0; initialPostionX < CoordinateXMaxValue; initialPostionX++)
             {
-                for (var initialPositionY = 0; initialPositionY < COORFINATEY_MAX_VALUE; initialPositionY++)
+                for (var initialPositionY = 0; initialPositionY < CoordinateYMaxValue; initialPositionY++)
                 {
                     _lightsWithBrightness[initialPostionX, initialPositionY] = new Light();
                 }
